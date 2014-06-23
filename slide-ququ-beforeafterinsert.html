@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Jerry Qu 's Document</title>
+	<style>
+* {margin:0;padding:0;}
+body{
+	height: 2000px;
+}
+.text{
+	margin-top: 2000px;
+	height: 100px;
+	width: 100px;
+	background: red;
+}
+li{list-style: none;}
+.focus-bar-wraper{margin: 0 auto;position: relative;width: 1000px;}
+.focus-bar-box{margin: 0 auto;position: relative;width: 1000px;height: 255px;overflow: hidden;}
+.focus-bar {width: 7000px;height: 255px;margin-left: 0;}
+.focus-bar .focus-poster {float: left;position: relative;width: 1000px;height: 255px;}
+.focus-bar .focus-poster  img{width: 1000px;height: 255px;}
+.focus-bar .focus-poster  .test2img{width: 500px;float: left;}
+.focus-bar .focus-poster .small-icon{position: absolute;left: 5px;bottom: 5px;
+	background: url(http://p4.qhimg.com/t019e2a9cd907f487f9.png);width: 35px;height: 35px;  }
+.le-hint:after {z-index: 2;top: 0;left: 0;width: 100%;height: 100%;content: '';background: rgba(0,0,0,.3) url(http://p5.qhimg.com/d/_hao360/video/bgimg/btn.png) no-repeat center;cursor: pointer;visibility: visible;
+}
+.btn-prev, .btn-next {position: absolute;top: 75px;width: 40px;height: 80px;z-index: 2;display: none;}
+.btn-prev {left: 0;background: url(http://p6.qhimg.com/t01e88b60b84029bc96.png) no-repeat;}
+.btn-next {right: 0;background: url(http://p0.qhimg.com/t01cb2048b287b1668f.png) no-repeat;}
+.list{position: absolute;top: 255px;left: 0;background-color: #4c4c4c;width: 1000px;height: 20px;}
+.list li{float: left;background-color: #ccc;margin-right: 10px;width: 30px;height: 8px;line-height: 20px;position: relative;}
+.list li.on{background-color: #06b5e5;}
+.num{position: absolute;left: 0px;top:0;font-size: 60px;color: red;}
+	</style>
+</head>
+<body>
+
+				<div class="focus-bar-wraper" id="focus-bar-wraper">
+					<div class="focus-bar-box" id="focus-bar-box">
+						<ul class="focus-bar clearfix" id="focus-bar">
+							<li class="focus-poster" data-index='1'>
+								<a href="/tv/QblvcKKqRGDqOH.html" class="item1 le-hint">
+								<img src="http://p3.qhimg.com/t01939d80c70f956164.jpg" class="test2img">
+								<img src="http://p5.qhimg.com/t01cd30a2c24459f9ab.png" class="test2img">
+								</a>
+								<a class="num">1</a>
+							</li>
+							<li class="focus-poster sedcond" data-index='2'>
+								<a href="/tv/QblvcKKqRGDqOH.html" class="item1 le-hint">
+								<img src="http://p4.qhimg.com/t01b9f3926ca3ff1181.jpg">
+					            </a>
+								<a class="num">2</a>
+							</li>
+							<li class="focus-poster third" data-index='3'>
+								<a href="/tv/QblvcKKqRGDqOH.html" class="item1 le-hint">
+								<img data-src="http://p3.qhimg.com/t01939d80c70f956164.jpg">
+					            </a>
+								<a class="num">3</a>
+							</li>
+							<li class="focus-poster" data-index='4'>
+								<a href="/tv/QblvcKKqRGDqOH.html" class="item1 le-hint">
+								<img data-src="http://p3.qhimg.com/t01939d80c70f956164.jpg">
+					            </a>
+								<a class="num">4</a>
+							</li>
+							<li class="focus-poster" data-index='5'>
+								<a href="/tv/QblvcKKqRGDqOH.html" class="item1 le-hint">
+								<img data-src="http://p3.qhimg.com/t01939d80c70f956164.jpg" class="test2img">
+								<img data-src="http://p5.qhimg.com/t01cd30a2c24459f9ab.png" class="test2img">
+					            </a>
+								<a class="num">5</a>
+							</li>
+							<li class="focus-poster" data-index='6'>
+								<a href="/tv/QblvcKKqRGDqOH.html" class="item1 le-hint">
+								<img data-src="http://p3.qhimg.com/t01939d80c70f956164.jpg">
+					            </a>
+								<a class="num">6</a>
+							</li>
+						</ul>
+					</div>
+					<a href="" class="btn-prev" onclick="return false;" hidefocus="" id="focus-prev"></a>
+					<a href="" class="btn-next" onclick="return false;" hidefocus="" id="focus-next"></a>	
+				<ul class="list" id="focus-change">
+					<li class="on" data-index="1"></li>
+					<li class="" data-index="2"></li>
+					<li class="" data-index="3"></li>
+					<li class="" data-index="4"></li>
+					<li class="" data-index="5"></li>
+					<li class="" data-index="6"></li>
+
+				</ul>
+				</div>
+				<div class="text"></div>
+
+
+	<script src="http://s0.qhimg.com/lib/jquery/1102.js"></script>
+	<script type="text/javascript" src="jquery-sliders-myself-1.8.js"></script>
+
+	<script>
+	var wraper = $('#focus-bar-wraper'),
+		wraperUl = $('#focus-bar-box'),
+		next_btn = $('#focus-next'),
+		next_prev = $('#focus-prev'),
+		ul_content = $('#focus-bar'),
+		ul_navList = $('#focus-change');
+	var elSlide = new Slide(wraperUl, next_btn, next_prev, ul_content, ul_navList,wraper, {
+		fouseNum: 0
+	});
+	elSlide.init();
+
+	</script>
+</body>
+</html>
