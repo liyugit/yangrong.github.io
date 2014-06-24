@@ -2,9 +2,11 @@
 从qwrap 移至jquery，修改1.1.1大家建议的修改点，完成向左移，向右移的两边的动画，用插入当前画面的前面或者后面，解决1.3版本出现的从1——5快速滑动，太快，有点晕
 
 此版本修改点
-1. 修改代码细节
-2. 添加lazyload
-3. 判断是否在可视区域,再执行动画.
+1. 正常动画流畅滑动
+2. 处理快速点击，中断动画，进行下一个动画。
+3. 支持自定义配置，第一个显示的画面。
+4. 判断是否在可视区域,再执行动画.
+5. 增加图片的lazyload
 
 *****/
 
@@ -49,6 +51,7 @@
 		};
 		return $.extend(this.option, options || {})
 	};
+	//进入页面，第一个展示的节点元素。
 	Slide.prototype.firstShow = function(index) {
 		if (this.lazyloadType == 'img') {
 			this.imgLazyload();
@@ -126,10 +129,18 @@
 	};
 	//计算当前的slide与视图窗口是否有交集
 	Slide.prototype.isOverlapped = function(idOne, idTwo) {
-		var leftTop = idTwo.left > idOne.left && idTwo.left < idOne.left + idOne.width && idTwo.top > idOne.top && idTwo.top < idOne.top + idOne.height,
-			rightTop = idTwo.left + idTwo.width > idOne.left && idTwo.left + idTwo.width < idOne.left + idOne.width && idTwo.top > idOne.top && idTwo.top < idOne.top + idOne.height,
-			leftBottom = idTwo.left > idOne.left && idTwo.left < idOne.left + idOne.width && idTwo.top + idTwo.height > idOne.top && idTwo.top + idTwo.height < idOne.top + idOne.height,
-			rightBottom = idTwo.left + idTwo.width > idOne.left && idTwo.left + idTwo.width < idOne.left + idOne.width && idTwo.top + idTwo.height > idOne.top && idTwo.top + idTwo.height < idOne.top + idOne.height;
+		var left_2 = idTwo.left,
+			left_1 = idOne.left,
+			top_2 = idTwo.top,
+			top_1 = idOne.top,
+			width_2 = idTwo.width,
+			width_1 = idOne.width,
+			height_2 = idTwo.height,
+			height_1 = idOne.height,
+		leftTop = left_2 > left_1 && left_2 < left_1 + width_1 && top_2 > top_1 && top_2 < top_1 + height_1,
+		rightTop = left_2 + width_2 > left_1 && left_2 + width_2 < left_1 + width_1 && top_2 > top_1 && top_2 < top_1 + height_1,
+		leftBottom = left_2 > left_1 && left_2 < left_1 + width_1 && top_2 + height_2 > top_1 && top_2 + height_2 < top_1 + height_1,
+		rightBottom = left_2 + width_2 > left_1 && left_2 + width_2 < left_1 + width_1 && top_2 + height_2 > top_1 && top_2 + height_2 < top_1 + height_1;
 		return leftTop || rightTop || leftBottom || rightBottom;
 	}
 	//绑定方法,把所有的方法绑定在一起方便管理。
